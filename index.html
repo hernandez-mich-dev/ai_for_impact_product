@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Petition check: Indiana protection orders</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <span class="bar-name">Petition check</span>
+    <button class="exit" id="exitBtn" type="button" aria-label="Safe exit: clear this page and leave">Safe exit<small>Esc twice</small></button>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Check your protection order petition before you file</h1>
+    <p class="lead">For Indiana petitions. Paste your draft and the checker points out facts the court looks for that may be missing, using the reasons the court itself publishes for denying emergency orders.</p>
+    <div class="promise">
+      <div><strong>It won’t tell you what to say</strong>It names requirements and asks questions. The words in your petition stay yours.</div>
+      <div><strong>Nothing leaves this page</strong>Your draft is checked in this browser. Nothing is saved, sent, or kept after you close it.</div>
+    </div>
+    <p class="danger"><strong>In danger right now?</strong> Call 911. National Domestic Violence Hotline: 1-800-799-7233, or text START to 88788.</p>
+    <p class="danger">This tool does not file anything. Petitions are filed through the <a href="https://public.courts.in.gov/porefsp" target="_blank" rel="noopener">Indiana Protection Order E-filing Service</a>. It gives legal information, not legal advice.</p>
+    <div class="demo">
+      <span>Prototype review: load a fictional example.</span>
+      <button class="linkbtn" type="button" data-example="vague">Vague draft</button>
+      <button class="linkbtn" type="button" data-example="detailed">Detailed draft</button>
+    </div>
+  </section>
+
+  <section class="step" aria-labelledby="s1">
+    <div class="step-h"><span class="num" aria-hidden="true">1</span><h2 id="s1">What are you filing under?</h2></div>
+    <p class="hint">Choose what your petition is based on. Choose more than one if more than one applies. The checker uses this to know which rules apply; it never suggests one.</p>
+    <fieldset>
+      <legend class="sr">Filing basis</legend>
+      <div class="tiles">
+        <label class="tile"><input type="checkbox" name="basis" value="dv"><div><span>Domestic or family violence</span><em>By a family or household member</em></div></label>
+        <label class="tile"><input type="checkbox" name="basis" value="stalking"><div><span>Stalking</span></div></label>
+        <label class="tile"><input type="checkbox" name="basis" value="harassment"><div><span>Harassment</span></div></label>
+        <label class="tile"><input type="checkbox" name="basis" value="sex"><div><span>Sex offense</span></div></label>
+      </div>
+    </fieldset>
+    <div class="sub" id="relWrap" hidden>
+      <label for="relationship"><strong>How do you know the respondent?</strong></label>
+      <p class="hint" style="margin-top:.1rem">The respondent is the person you are asking the court to protect you from.</p>
+      <select id="relationship">
+        <option value="">Choose one</option>
+        <option value="spouse">Current or former spouse</option>
+        <option value="dating">Dating now, or dated in the past</option>
+        <option value="sexual">Sexual relationship, now or in the past</option>
+        <option value="blood">Related by blood or adoption</option>
+        <option value="marriage">Related by marriage, now or in the past (in-laws, stepfamily)</option>
+        <option value="legal">Guardian, custodian, foster parent, or similar legal relationship</option>
+        <option value="child">We have a child together</option>
+        <option value="none">None of these (for example, a neighbor, coworker, or roommate)</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="step" aria-labelledby="s2">
+    <div class="step-h"><span class="num" aria-hidden="true">2</span><h2 id="s2">What do you know about the respondent?</h2></div>
+    <p class="hint">Only yes or no. The checker doesn’t ask for the details themselves.</p>
+    <div class="yn">
+      <p id="dobQ">Do you know the respondent’s date of birth?</p>
+      <div class="seg" role="radiogroup" aria-labelledby="dobQ">
+        <label><input type="radio" name="dob" value="yes"><span>Yes</span></label>
+        <label><input type="radio" name="dob" value="no"><span>No</span></label>
+      </div>
+    </div>
+    <div class="yn">
+      <p id="ssnQ">Do you know the respondent’s Social Security number?</p>
+      <div class="seg" role="radiogroup" aria-labelledby="ssnQ">
+        <label><input type="radio" name="ssn" value="yes"><span>Yes</span></label>
+        <label><input type="radio" name="ssn" value="no"><span>No</span></label>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" aria-labelledby="s3">
+    <div class="step-h"><span class="num" aria-hidden="true">3</span><h2 id="s3">Paste what happened</h2></div>
+    <p class="hint">Paste the part of your draft that describes what happened. Putting each incident in its own paragraph helps the checker tell them apart.</p>
+    <label for="draft" class="sr">Your draft</label>
+    <textarea id="draft" spellcheck="true" autocomplete="off" placeholder="Paste or type your draft here"></textarea>
+    <div class="row">
+      <button class="btn" id="runBtn" type="button">Check my draft</button>
+      <button class="btn ghost" id="clearBtn" type="button">Clear</button>
+      <span class="count" id="count" aria-live="polite">0 words</span>
+    </div>
+  </section>
+
+  <div id="report" aria-live="polite"></div>
+
+  <section class="step" aria-labelledby="s4">
+    <div class="step-h"><span class="num opt" aria-hidden="true">+</span><h2 id="s4">Get photos ready to upload</h2></div>
+    <p class="hint">Optional. Phone photos and screenshots can be too large to upload, and photos can carry the location where they were taken. The petition is sent to the respondent, so this removes location data and shrinks each photo while keeping text readable. Photos are processed in this browser only.</p>
+    <label class="drop" id="drop">
+      <input type="file" id="photoInput" accept="image/*" multiple>
+      <strong>Choose photos or screenshots</strong><br>
+      <span class="bg-note">or drop them here</span>
+    </label>
+    <div class="settings">
+      <label for="target">Size limit per photo</label>
+      <select id="target">
+        <option value="1048576">1 MB</option>
+        <option value="2097152" selected>2 MB</option>
+        <option value="5242880">5 MB</option>
+        <option value="10485760">10 MB</option>
+      </select>
+    </div>
+    <ul class="photos" id="photoList"></ul>
+    <div class="row" id="photoActions" hidden>
+      <button class="btn" id="saveAll" type="button">Save all photos (.zip)</button>
+      <button class="btn ghost" id="clearPhotos" type="button">Remove all</button>
+    </div>
+  </section>
+
+  <details class="review" id="reviewPanel">
+    <summary>How this checker works (for reviewers)</summary>
+    <div id="reviewBody"></div>
+  </details>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

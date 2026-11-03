@@ -1,0 +1,23 @@
+{
+  "name": "petition-check",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pre-submission checker for Indiana protection order petitions (AI for Impact, Team 10)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "devDependencies": {
+    "vercel": "^65.10.0",
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  }
+}
