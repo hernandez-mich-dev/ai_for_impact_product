@@ -4,6 +4,8 @@ A pre-submission checker for Indiana protection order petitions. A self-filer pa
 
 Built by Team 10 for AI for Impact (CS 4535 / CS 6983), Fall 2026. Client: Indiana Supreme Court, Office of Judicial Administration.
 
+**Live prototype: https://petition-checker.vercel.app**
+
 > Prototype for course review. It gives legal information, not legal advice, and does not file anything. All example petitions are fictional.
 
 ## Quick start
@@ -26,8 +28,20 @@ To try it quickly, use the **Vague draft** and **Detailed draft** buttons near t
 | `npm run dev`     | Start the local dev server with live reload        |
 | `npm run build`   | Build a static site into `dist/`                   |
 | `npm run preview` | Serve the built `dist/` folder to check the build  |
+| `npm run deploy`  | Deploy to production on Vercel                     |
 
-The build output is plain static files, so `dist/` can be hosted anywhere (GitHub Pages, Netlify, a university server) with no backend.
+## Deploying
+
+The live site is hosted on Vercel, which detects Vite and runs `vite build` itself, so there is nothing to configure.
+
+```bash
+npx vercel login   # once per machine
+npm run deploy     # runs vercel --prod
+```
+
+The `petition-checker` project lives on Vashistha's Vercel account, so only that account can deploy to https://petition-checker.vercel.app. Ask Vashistha to deploy, or to add you to the Vercel project. If you run `npm run deploy` from your own account, Vercel creates a separate project with its own URL instead of updating the shared one.
+
+The build output is plain static files, so `dist/` can also be hosted anywhere else (GitHub Pages, Netlify, a university server) with no backend.
 
 ## The problem
 
