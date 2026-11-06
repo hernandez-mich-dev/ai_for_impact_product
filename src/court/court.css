@@ -1,0 +1,71 @@
+/* Court triage page. Builds on the shared tokens in ../styles.css. */
+:root{ --urgent:#9B1C1C; --urgent-bg:#FBE4E4; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --urgent:#F5A3A3; --urgent-bg:#3A1D1D; }
+}
+:root[data-theme="dark"]{ --urgent:#F5A3A3; --urgent-bg:#3A1D1D; }
+
+main, .bar-in{ max-width:980px }
+.tag{ font-weight:400; font-size:.85rem; color:var(--muted); margin-left:.4rem }
+.barlink{ font-size:.95rem }
+.promise.three{ grid-template-columns:repeat(3,minmax(0,1fr)) }
+
+.stats{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.6rem; margin:.4rem 0 1rem }
+.stat{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:.6rem .8rem }
+.stat b{ display:block; font-size:1.5rem; line-height:1.2 }
+.stat span{ font-size:.85rem; color:var(--muted) }
+.stat.s3 b{ color:var(--urgent) } .stat.s2 b{ color:var(--gap) }
+
+.toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:.6rem }
+.toolbar select{ width:auto; min-height:44px; padding:.45rem .7rem }
+.toolbar .btn{ margin-left:auto; min-height:44px; padding:.5rem 1rem }
+
+#addPanel h2{ font-size:1.2rem; margin:0 0 .3rem }
+.checks{ display:flex; flex-wrap:wrap; gap:.4rem 1.2rem; margin:.3rem 0 .8rem }
+.checks label{ display:flex; gap:.4rem; align-items:center; cursor:pointer }
+.checks input{ width:1.1rem; height:1.1rem; accent-color:var(--brand) }
+.formrow{ display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-bottom:.6rem }
+.formrow select{ width:auto; min-height:44px; padding:.45rem .7rem }
+#atext{ min-height:10rem }
+
+.list-h{ font-size:1.15rem; margin:1.6rem 0 .6rem }
+.queue{ list-style:none; margin:0; padding:0; display:grid; gap:.8rem }
+.card{ background:var(--surface); border:1px solid var(--line); border-left:6px solid var(--line); border-radius:12px; padding:1rem 1.1rem }
+.card.p3{ border-left-color:var(--urgent) } .card.p2{ border-left-color:var(--gap) } .card.p1{ border-left-color:var(--info) }
+.card-top{ display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .8rem }
+.rank{ flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--brand); color:var(--brand-ink); display:grid; place-items:center; font-weight:700 }
+.ident{ display:flex; flex-direction:column; min-width:0 }
+.ident b{ font-size:1.05rem }
+.ident span{ font-size:.88rem; color:var(--muted) }
+.badges{ display:flex; flex-wrap:wrap; gap:.35rem; margin-left:auto }
+.badge{ font-size:.85rem; font-weight:700; padding:.2rem .6rem; border-radius:999px; border:1.5px solid var(--line); white-space:nowrap }
+.badge.pr3{ background:var(--urgent-bg); color:var(--urgent); border-color:var(--urgent-bg) }
+.badge.pr2{ background:var(--gap-bg); color:var(--gap); border-color:var(--gap-bg) }
+.badge.pr1{ background:var(--info-bg); color:var(--info); border-color:var(--info-bg) }
+.badge.cx{ font-weight:400; color:var(--ink) }
+.headline{ margin:.7rem 0 .3rem; font-weight:700 }
+.chips{ display:flex; flex-wrap:wrap; gap:.35rem; margin:.3rem 0 .5rem }
+.chip{ font-size:.82rem; padding:.15rem .55rem; border-radius:6px; background:var(--bg); border:1px solid var(--line) }
+.chip.danger{ background:var(--urgent-bg); color:var(--urgent); border-color:var(--urgent-bg); font-weight:700 }
+.chip.factor{ background:var(--gap-bg); color:var(--gap); border-color:var(--gap-bg); font-weight:700 }
+.lines{ list-style:none; margin:.4rem 0; padding:0; display:grid; gap:.35rem }
+.lines li{ font-size:.95rem; padding:.4rem .6rem; border-radius:8px; background:var(--bg) }
+.lines li.latest{ outline:1.5px solid var(--brand) }
+.lines .meta{ font-size:.85rem; color:var(--muted) }
+.lines .meta b{ color:var(--ink) }
+.card details{ margin-top:.5rem }
+.card summary{ cursor:pointer; font-weight:700; color:var(--brand); font-size:.95rem }
+.why h4{ font-size:.92rem; margin:.7rem 0 .25rem }
+.why ul{ margin:0; padding-left:1.1rem; font-size:.92rem }
+.why .src{ display:inline; margin-left:.3rem }
+.card blockquote{ margin:.5rem 0 0; padding:.2rem 0 .2rem .85rem; border-left:3px solid var(--line); white-space:pre-line; font-size:.95rem }
+.actions{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.8rem }
+.done .card{ opacity:.75 }
+.done .lines, .done details, .done .chips{ display:none }
+
+@media (max-width:760px){
+  .promise.three{ grid-template-columns:1fr }
+  .stats{ grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .badges{ margin-left:0; width:100% }
+  .toolbar .btn{ margin-left:0 }
+}

@@ -6,6 +6,15 @@ Built by Team 10 for AI for Impact (CS 4535 / CS 6983), Fall 2026. Client: India
 
 **Live prototype: https://petition-checker.vercel.app**
 
+The repo holds two prototypes that share the same incident extractor:
+
+| Page | Who it's for | Local URL |
+| ---- | ------------ | --------- |
+| Petition check | Petitioners, before they file | http://localhost:5173/ |
+| Petition triage | Clerks and judges reviewing filed petitions | http://localhost:5173/court/ |
+
+The pages link to each other: "Petition triage for clerks and judges" in the Prototype review strip on the main page, and "Petitioner tool" in the court page's top bar. Live: https://petition-checker.vercel.app/court/
+
 > Prototype for course review. It gives legal information, not legal advice, and does not file anything. All example petitions are fictional.
 
 ## Quick start
@@ -87,11 +96,35 @@ Sources: **S1** Indiana Instructions for Petition for Order of Protection (OJA-P
 - **Safe exit.** The button in the top bar (or pressing Esc twice) clears the page and navigates to a neutral site.
 - **Location data is stripped from photos**, since the petition and attachments are sent to the respondent.
 
+## Court side: Petition triage (`/court/`)
+
+A review queue for clerks and judges. Each filed petition gets:
+
+- **A summary** assembled from the petitioner's own sentences: relationship, filing basis, number of incidents and date range, and for each incident the date, place and the sentence describing what was done. Nothing is reworded or generated.
+- **A priority level** from published domestic violence risk factors:
+  - **Urgent:** the text mentions a weapon used or threatened, a threat to kill, or fear of being killed (Lethality Screen questions 1 to 3), or four or more of the screen's other risk factors.
+  - **Elevated:** any other Lethality Screen or Danger Assessment factor, such as strangulation, gun access, separation, stalking, forced sex or escalation, or any physical violence, dated or not.
+  - **Standard:** none of these found in the text.
+- **A complexity level** (Low, Medium or High) from length, number of incidents, filing bases, secondhand accounts, children mentioned and possible gaps, plus an estimated reading time.
+- **Possible gaps:** the same published denial reasons the petitioner tool checks.
+
+The suggested order is priority, then ex parte requests (the court can act on these immediately under Ind. Code 34-26-5-9), then simpler petitions first, then oldest. Reviewers can sort by oldest or most complex, move petitions up and down, and mark them reviewed. Every label shows the exact phrase that set it and links its source. The page also runs an outcome-language test: no label may suggest granting or denying.
+
+Guardrails follow the TRI/NCSC court AI principles: AI should never be the final arbiter of a court decision, and risk prediction is a high-risk use that needs a human making the decision. Priority is about reading order only, not a risk assessment, and a petition with no indicators is not a safe petition.
+
+Sources: [Lethality Screen for First Responders](https://www.tdcaa.com/wp-content/uploads/DV-Lethality-Screen-for-First-Responders.pdf) (MNADV), [Danger Assessment](https://www.dangerassessment.org/uploads/pdf/DAEnglish2010.pdf) (Campbell, 2003), [Glass et al. 2008](https://pubmed.ncbi.nlm.nih.gov/17961956/) on strangulation, Ind. Code 34-26-5-9, and [TRI/NCSC Principles and Practices for AI in Courts](https://www.ali.org/sites/default/files/2025-11/NCSC-TRI-Consortium-Principles-and-Practices-for-AI-in-State-Courts.pdf). The sample queue holds eight fictional petitions. "Add a petition" scores any pasted narrative the same way.
+
 ## Project structure
 
 ```
-index.html            Page markup (all steps, report area, reviewer panel)
+index.html            Petitioner tool markup (all steps, report area, reviewer panel)
+court/index.html      Court triage page markup
 src/
+  court/
+    court.js          Queue state, cards, sorting, reorder and reviewed actions
+    triage.js         Summary, priority and complexity rules (no DOM)
+    samples.js        Fictional filed petitions
+    court.css         Court page styles (builds on styles.css)
   main.js             Entry point: form wiring and example buttons
   content.js          Sources and every fixed message the user can see
   extract.js          Incident extraction (pattern matching, no DOM)
@@ -110,6 +143,7 @@ docs/                 Journey map and service blueprint (PDF)
 
 - **Changing what users read:** edit `src/content.js`. Keep messages as requirements or questions. Anything phrased like "you should" fails the advice test in the reviewer panel.
 - **Adding a check:** add a message in `content.js`, trigger it in `rules.js`, and list it in the `rules` table in `review-panel.js`.
+- **Changing triage rules:** danger indicators are the `INDICATORS` list in `src/court/triage.js`; priority, complexity and the suggested order are in `triage()` and `suggestedCompare()` in the same file.
 - **Improving extraction:** `extractIncidents()` in `src/extract.js` is the swap point. A language-model extractor can replace it later as long as it returns the same incident shape; the rules don't need to change.
 
 ## Prototype limitations
