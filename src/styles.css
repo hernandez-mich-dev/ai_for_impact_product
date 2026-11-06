@@ -72,7 +72,8 @@ main{max-width:720px;margin:0 auto;padding:0 1.1rem 4rem}
 .danger{font-size:.95rem;color:var(--muted)}
 .danger strong{color:var(--ink)}
 .demo{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.92rem;color:var(--muted);margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--line)}
-.linkbtn{font:inherit;background:none;border:1px solid var(--line);color:var(--brand);padding:.3rem .7rem;border-radius:999px;cursor:pointer}
+.linkbtn{font:inherit;background:none;border:1px solid var(--line);color:var(--brand);padding:.3rem .7rem;border-radius:999px;cursor:pointer;text-decoration:none}
+.demo-sep{margin-left:.5rem}
 
 /* Steps */
 .step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.2rem 1.4rem;margin:1rem 0}

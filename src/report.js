@@ -4,7 +4,7 @@
 import { SOURCES, KIND_LABEL } from "./content.js";
 import { esc, toast } from "./util.js";
 
-function highlight(text, phrases){
+export function highlight(text, phrases){
   let out = esc(text);
   const seen = new Set();
   for (const p of phrases){

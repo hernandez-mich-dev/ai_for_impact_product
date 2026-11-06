@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Petition triage: court review queue</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <span class="bar-name">Petition triage <span class="tag">Court staff prototype</span></span>
+    <a class="barlink" href="../">Petitioner tool</a>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Protection order petitions waiting for review</h1>
+    <p class="lead">Each petition gets a short summary built from the petitioner’s own words, a priority level from published domestic violence risk factors, and a complexity level for how long it will take to review. The order is a suggestion. Every petition still gets read in full, and the tool never suggests granting or denying.</p>
+    <div class="promise three">
+      <div><strong>Suggests, never decides</strong>Reorder petitions or mark them reviewed as you go. Every label shows the exact phrases that set it.</div>
+      <div><strong>Rules you can check</strong>Priority follows the Lethality Screen and the Danger Assessment. Every reason cites its source.</div>
+      <div><strong>Fictional petitions</strong>All samples are invented. Everything runs in this browser and nothing is sent anywhere.</div>
+    </div>
+  </section>
+
+  <div class="stats" id="stats" aria-live="polite"></div>
+
+  <div class="toolbar">
+    <label for="sort"><strong>Order</strong></label>
+    <select id="sort">
+      <option value="suggested">Suggested: priority, then simplest first</option>
+      <option value="oldest">Oldest filing first</option>
+      <option value="complex">Most complex first</option>
+      <option value="custom" disabled>Your order</option>
+    </select>
+    <button class="btn ghost" id="addToggle" type="button" aria-expanded="false" aria-controls="addPanel">Add a petition</button>
+  </div>
+
+  <section class="step" id="addPanel" hidden aria-labelledby="addH">
+    <h2 id="addH">Add a petition to the queue</h2>
+    <p class="hint">For testing. Paste any fictional petition narrative. It is scored the same way as the samples.</p>
+    <fieldset>
+      <legend>Filing basis</legend>
+      <div class="checks">
+        <label><input type="checkbox" name="abasis" value="dv"> Domestic or family violence</label>
+        <label><input type="checkbox" name="abasis" value="stalking"> Stalking</label>
+        <label><input type="checkbox" name="abasis" value="harassment"> Harassment</label>
+        <label><input type="checkbox" name="abasis" value="sex"> Sex offense</label>
+      </div>
+    </fieldset>
+    <div class="formrow">
+      <label for="arel"><strong>Relationship</strong></label>
+      <select id="arel">
+        <option value="">Not given</option>
+        <option value="spouse">Current or former spouse</option>
+        <option value="dating">Dating, now or before</option>
+        <option value="sexual">Sexual relationship</option>
+        <option value="blood">Related by blood or adoption</option>
+        <option value="marriage">Related by marriage</option>
+        <option value="legal">Legal guardian or custodian</option>
+        <option value="child">Child in common</option>
+        <option value="none">Not a family or household member</option>
+      </select>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" id="aexparte" checked> Ex parte order requested</label>
+      <label><input type="checkbox" id="adob"> Respondent date of birth or SSN given</label>
+    </div>
+    <label for="atext" class="sr">Petition narrative</label>
+    <textarea id="atext" placeholder="Paste the petition narrative here"></textarea>
+    <div class="row">
+      <button class="btn" id="addBtn" type="button">Add to queue</button>
+      <button class="btn ghost" id="addCancel" type="button">Cancel</button>
+    </div>
+  </section>
+
+  <h2 class="list-h">Waiting</h2>
+  <ol class="queue" id="queue"></ol>
+
+  <h2 class="list-h" id="doneH" hidden>Reviewed</h2>
+  <ol class="queue done" id="done"></ol>
+
+  <details class="review" id="reviewPanel">
+    <summary>How triage works (for reviewers)</summary>
+    <div id="reviewBody"></div>
+  </details>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+<script type="module" src="/src/court/court.js"></script>
+</body>
+</html>
