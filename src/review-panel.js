@@ -39,7 +39,7 @@ export function buildReviewPanel(){
     <h3>Privacy</h3>
     <ul>
       <li>No storage: no cookies, local storage, or server calls with the draft. Closing the page erases everything.</li>
-      <li>Safe exit clears the page before leaving. Pressing Esc twice does the same.</li>
+      <li>Safe exit clears the page before leaving. Pressing Esc twice does the same. Pressing Back afterwards opens a fresh, empty page; nothing from before is restored.</li>
     </ul>
     <h3>Sources</h3>
     <ul>${Object.entries(SOURCES).map(([k, s]) => `<li>${k}. ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)}</li>`).join("")}</ul>`;

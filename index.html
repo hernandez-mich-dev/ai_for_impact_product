@@ -13,7 +13,13 @@
 <header class="bar">
   <div class="bar-in">
     <span class="bar-name">Petition check</span>
-    <button class="exit" id="exitBtn" type="button" aria-label="Safe exit: clear this page and leave">Safe exit<small>Esc twice</small></button>
+    <div class="bar-right">
+      <nav class="switch" aria-label="Switch between tools">
+        <a href="./" aria-current="page">Petitioner</a>
+        <a href="court/">Court</a>
+      </nav>
+      <button class="exit" id="exitBtn" type="button" aria-label="Safe exit: clear this page and leave">Safe exit<small>Esc twice</small></button>
+    </div>
   </div>
 </header>
 
@@ -31,8 +37,6 @@
       <span>Prototype review: load a fictional example.</span>
       <button class="linkbtn" type="button" data-example="vague">Vague draft</button>
       <button class="linkbtn" type="button" data-example="detailed">Detailed draft</button>
-      <span class="demo-sep">Court side:</span>
-      <a class="linkbtn" href="court/">Petition triage for clerks and judges</a>
     </div>
   </section>
 

@@ -58,6 +58,17 @@ a{color:var(--brand)}
   min-height:44px;
 }
 .exit small{font-weight:400;opacity:.75;margin-left:.35rem}
+.bar-right{display:flex;align-items:center;gap:.6rem}
+.bar-name,.exit,.switch a{white-space:nowrap}
+/* Narrow phones: the Safe exit button and switch take priority over the name */
+@media (max-width:430px){ .bar-in:has(.exit) .bar-name{display:none} .bar-in:has(.exit){justify-content:flex-end} }
+
+/* Petitioner / Court switch */
+.switch{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;font-size:.92rem;flex:none}
+.switch a{display:flex;align-items:center;min-height:40px;padding:0 .9rem;color:var(--ink);text-decoration:none}
+.switch a[aria-current="page"]{background:var(--brand);color:var(--brand-ink);font-weight:700}
+.switch a:not([aria-current]):hover{background:var(--brand-soft)}
+.switch a:focus-visible{outline:3px solid var(--brand);outline-offset:-3px;border-radius:999px}
 
 main{max-width:720px;margin:0 auto;padding:0 1.1rem 4rem}
 
@@ -73,7 +84,6 @@ main{max-width:720px;margin:0 auto;padding:0 1.1rem 4rem}
 .danger strong{color:var(--ink)}
 .demo{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.92rem;color:var(--muted);margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--line)}
 .linkbtn{font:inherit;background:none;border:1px solid var(--line);color:var(--brand);padding:.3rem .7rem;border-radius:999px;cursor:pointer;text-decoration:none}
-.demo-sep{margin-left:.5rem}
 
 /* Steps */
 .step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.2rem 1.4rem;margin:1rem 0}
@@ -193,5 +203,9 @@ th{color:var(--muted)}
   .photo img{width:56px;height:56px}
   .photo .small-btn{grid-column:1 / -1}
   .exit small{display:none}
+  .bar-in{gap:.5rem;padding:.5rem .9rem}
+  .switch{font-size:.85rem}
+  .switch a{padding:0 .65rem}
+  .exit{padding:.5rem .9rem}
 }
 @media (prefers-reduced-motion: reduce){ .toast{transition:none} html{scroll-behavior:auto} }
