@@ -13,7 +13,7 @@ The repo holds two prototypes that share the same incident extractor:
 | Petition check | Petitioners, before they file | http://localhost:5173/ |
 | Petition triage | Clerks and judges reviewing filed petitions | http://localhost:5173/court/ |
 
-The pages link to each other: "Petition triage for clerks and judges" in the Prototype review strip on the main page, and "Petitioner tool" in the court page's top bar. Live: https://petition-checker.vercel.app/court/
+Switch between the two with the **Petitioner | Court** toggle at the top right of either page. Live: https://petition-checker.vercel.app/court/
 
 > Prototype for course review. It gives legal information, not legal advice, and does not file anything. All example petitions are fictional.
 
@@ -93,7 +93,7 @@ Sources: **S1** Indiana Instructions for Petition for Order of Protection (OJA-P
 
 - **Legal information, not legal advice.** No message says what to claim, which basis to use, or whether the petition will be granted. The reviewer panel at the bottom of the page runs the "should" test from the client session on every message and shows pass or fail.
 - **The draft never leaves the browser.** No backend, no cookies, no local storage, no analytics. Closing the tab erases everything.
-- **Safe exit.** The button in the top bar (or pressing Esc twice) clears the page and navigates to a neutral site.
+- **Safe exit.** The button in the top bar (or pressing Esc twice) clears the page and navigates to a Google weather search. Pressing Back returns to a fresh, empty copy of the app; nothing from before is restored. Trade-off: someone pressing Back on the device would see the app's front page, though the visit also shows in the browser's history list either way.
 - **Location data is stripped from photos**, since the petition and attachments are sent to the respondent.
 
 ## Court side: Petition triage (`/court/`)
